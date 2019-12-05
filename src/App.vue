@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{name: 'container'}">Container</router-link> |
+      <router-link :to="{name: 'container', params: {page: 'Container'}}">Container</router-link> |
       <router-link :to="{name: 'flavor'}">Flavor</router-link> |
       <router-link :to="{name: 'scoops'}">Scoops</router-link> |
       <router-link :to="{name: 'toppings'}">Toppings</router-link> |

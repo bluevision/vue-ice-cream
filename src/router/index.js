@@ -1,17 +1,19 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import Router from "vue-router";
 import Container from "../views/Container.vue";
 import Flavor from "../views/Flavor.vue";
 import Scoops from "../views/Scoops.vue"
 import Toppings from "../views/Toppings.vue"
+Vue.use(Router);
 
-Vue.use(VueRouter);
-
-const routes = [
+export default new Router({
+  mode: "history",
+  routes: [
   {
     path: "/",
     name: "container",
-    component: Container
+    component: Container,
+    props: true
   },
   {
     path: "/flavor",
@@ -28,10 +30,10 @@ const routes = [
     name: "toppings",
     component: Toppings
   }
-];
+]
 
-const router = new VueRouter({
-  routes
 });
 
-export default router;
+
+
+
