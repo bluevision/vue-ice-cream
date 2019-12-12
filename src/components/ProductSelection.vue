@@ -1,7 +1,10 @@
 <template>
 <div>
-    <h1>Select a Container </h1>
-<ProductSelection/>
+    <span v-on:click="selection = product1.cost">{{product1.name}} - {{product1.cost}}</span>
+    <span v-on:click="selection = product2.cost">{{product2.name}} - {{product2.cost}}</span>
+    <span v-on:click="selection = product3.cost">{{product3.name}} - {{product3.cost}}</span>
+    <span>{{selection}}</span>
+
 </div>
 </template>
 
@@ -10,15 +13,15 @@ export default {
     data() {
         return {
             product1: {
-                name: 'Cup',
+                name: 'product 1',
                 cost: 0.20
             },
             product2: {
-                name: 'Cake Cone',
+                name: 'product 2',
                 cost: 0.50
             },
             product3: {
-                name: 'Waffle Cone',
+                name: 'product 3',
                 cost: 0.75
             },
             selection: 0

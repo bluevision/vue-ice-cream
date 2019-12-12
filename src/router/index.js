@@ -12,8 +12,7 @@ export default new Router({
   {
     path: "/",
     name: "container",
-    component: Container,
-    props: true
+    component: Container
   },
   {
     path: "/flavor",
