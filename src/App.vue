@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>Create an Ice Cream Cone!</h1>
     <div id="nav">
       <router-link :to="{name: 'container'}">Container</router-link> |
       <router-link :to="{name: 'scoops'}">Scoops</router-link> |
@@ -11,13 +12,18 @@
   </div>
 </template>
 
+
 <style>
+body {
+    background-color:#FAA1E1; 
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
+
 }
 
 #nav {
@@ -26,10 +32,10 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: rgb(154,104,65);
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: grey;
 }
 </style>
