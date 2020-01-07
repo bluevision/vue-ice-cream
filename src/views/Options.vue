@@ -1,7 +1,7 @@
 <template>
 <div>
     <h1>{{title}}</h1>
-    <ProductSelection :key="option.name" v-for="option in options" :cost="option.cost" :selected="selected && selected.name===option.name">{{option.name}}</ProductSelection>
+    <ProductSelection :key="option.name" v-for="option in options" :cost="option.cost" :selected="selected && selected.name===option.name" @click.native="selection(option)">{{option.name}}</ProductSelection>
     
 </div>
 </template>
@@ -10,9 +10,21 @@
 
 export default {
     props: {
+        category: String,
         options: Array,
         title: String,
-        selected: Object
+        selected: Array
+
+
+    },
+    methods: {
+        selection(option) {
+            console.log("selection")
+            this.$store.commit('TOGGLE', {
+                category: this.category,
+                option: option
+            })
+        }
     }
 }
 

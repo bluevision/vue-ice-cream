@@ -1,6 +1,6 @@
 <template>
 <Button :selected="selected">
-    {{selected}}<slot /><span class="cost" v-if="typeof cost === 'number'"> ${{cost}}</span>
+    <slot /><span class="cost" v-if="typeof cost === 'number'"> ${{cost}}</span>
 </Button>
 </template>
 

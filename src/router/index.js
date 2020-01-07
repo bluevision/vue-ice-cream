@@ -12,7 +12,9 @@ export default new Router({
     name: "container",
     component: Options,
     props: ()=> {
+      console.log(store.state.container.selected)
       return {
+        category: "container",
         options: store.state.container.options,
         title: 'Select a Container', 
         selected: store.state.container.selected
@@ -25,6 +27,7 @@ export default new Router({
     component: Options,
     props: ()=> {
       return {
+        category: "flavor",
         options: store.state.flavor.options,
         title: 'Select a Flavor', 
         selected: store.state.flavor.selected
@@ -37,6 +40,7 @@ export default new Router({
     component: Options,
     props: ()=> {
       return {
+        category: "scoops",
         options: store.state.scoops.options,
         title: 'Select a Scoops', 
         selected: store.state.scoops.selected
@@ -48,8 +52,8 @@ export default new Router({
     name: "toppings",
     component: Options,
     props: ()=> {
-      console.log("something")
       return {
+        category: "toppings",
         options: store.state.toppings.options,
         title: 'Select your Toppings', 
         selected: store.state.toppings.selected
