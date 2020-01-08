@@ -48,7 +48,7 @@ export default new Vuex.Store({
             {name: 'Gummy Bears', cost: 0.3},
             {name: 'Marshmellows', cost: 0.2}
         ],
-        selected: [],
+        selected: [{name: 'Marshmellows', cost: 0.2}],
         settings: {
             multiSelect : true
         }
@@ -56,19 +56,21 @@ export default new Vuex.Store({
 },
   mutations: {
       TOGGLE(state, payload) {
-          console.log('Mutation')
-          const option = payload.option
-          let selected = state[payload.category].selected
+          let selection = state[payload.category].selected
           const trueFalse = state[payload.category].settings.multiSelect
-          if(selected[option]) {
-            delete selected[option]
+          if(selection[payload.option]) {
+            console.log('deleted')
+            delete state[payload.category].selected.payload.option
           } else {
             if (trueFalse) {
-                state[payload.category].selected.push(option)
-                console.log(selected)
+
+                state[payload.category].selected.push(payload.option)
+                console.log('multi select')
+                console.log(payload.option)
+                console.log(state[payload.category].selected)
            } else {
-             console.log('State is Changed')
-             state[payload.category].selected = payload.option
+             console.log(payload.option)
+             state[payload.category].selected.push(payload.option)
          }
           }
          
