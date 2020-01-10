@@ -56,25 +56,23 @@ export default new Vuex.Store({
 },
   mutations: {
       TOGGLE(state, payload) {
-          let selection = state[payload.category].selected
-          const trueFalse = state[payload.category].settings.multiSelect
-          if(selection[payload.option]) {
-            console.log('deleted')
-            delete state[payload.category].selected.payload.option
-          } else {
-            if (trueFalse) {
-
-                state[payload.category].selected.push(payload.option)
-                console.log('multi select')
+          if(state[payload.category].settings.multiSelect) {
+            if (state[payload.category].selected.some(payload => payload.option === payload.option)){
+                state[payload.category].selected.pop(payload.option)
+                console.log("doesn't exist")
                 console.log(payload.option)
+            } else {
+                state[payload.category].selected.push(payload.option)
+                console.log('push multiselect')
                 console.log(state[payload.category].selected)
-           } else {
-             console.log(payload.option)
-             state[payload.category].selected.push(payload.option)
+                console.log(payload.option)
+            }
+          } else {
+            state[payload.category].selected = payload.option
+            console.log('replace single select')
+           } 
          }
-          }
          
-        }
   },
   actions: {},
   modules: {}

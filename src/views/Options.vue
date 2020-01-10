@@ -1,8 +1,8 @@
 <template>
 <div>
     <h1>{{title}}</h1>
-    <ProductSelection :key="option.name" v-for="option in options" :cost="option.cost" :selected="selected && selected.name===option.name" @click.native="selection(option)">{{option.name}}</ProductSelection>
-    
+    <ProductSelection :key="option.name" v-for="option in options" :cost="option.cost" :selected="selected[option]" @click.native="selection(option)">{{option.name}}</ProductSelection>
+    //selected needs to equal the object in the array where it is equal to the option.name
 </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
         category: String,
         options: Array,
         title: String,
-        selected: Array
+        selected: Object
 
 
     },
