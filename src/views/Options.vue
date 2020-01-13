@@ -1,31 +1,43 @@
 <template>
-<div>
-    <h1>{{title}}</h1>
-    <ProductSelection :key="option.name" v-for="option in options" :cost="option.cost" :selected="selected[option]" @click.native="selection(option)">{{option.name}}</ProductSelection>
-    //selected needs to equal the object in the array where it is equal to the option.name
-</div>
+    <div>
+        <h1>{{ title }}</h1>
+        <ProductSelection
+            :key="option.name"
+            v-for="option in options"
+            :cost="option.cost"
+            :selected="checkSelected(selected, option)"
+            @click.native="selection(option)"
+        >
+            {{ option.name }}
+        </ProductSelection>
+    </div>
 </template>
 
 <script>
-
 export default {
     props: {
         category: String,
         options: Array,
         title: String,
-        selected: Object
-
-
+        selected: Array,
     },
     methods: {
         selection(option) {
-            console.log("selection")
             this.$store.commit('TOGGLE', {
                 category: this.category,
-                option: option
+                option: option,
             })
-        }
-    }
+        },
+        checkSelected(selected, option) {
+            var selection = selected.filter(obj => {
+                return obj.name === option.name
+            })
+            if (selection.length != 0) {
+                return true
+            } else {
+                return false
+            }
+        },
+    },
 }
-
 </script>

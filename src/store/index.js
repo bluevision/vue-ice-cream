@@ -1,79 +1,80 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    container: {
-        options: [
-            {name: 'Cup', cost: 0.25},
-            {name: 'Cake Cone', cost: 0.5},
-            {name: 'Waffle Cone', cost: 1.00}
-        ],
-        selected: [],
+    state: {
+        container: {
+            options: [
+                { name: 'Cup', cost: 0.25 },
+                { name: 'Cake Cone', cost: 0.5 },
+                { name: 'Waffle Cone', cost: 1.0 },
+            ],
+            selected: [],
 
-        settings: {
-            multiSelect : false
-        }
-    },
-    flavor: {
-        options: [
-            {name: 'Strawberry'},
-            {name: 'Chocolate'},
-            {name: 'Vanilla'}
-        ],
-        selected: [],
+            settings: {
+                multiSelect: false,
+            },
+        },
+        flavor: {
+            options: [
+                { name: 'Strawberry' },
+                { name: 'Chocolate' },
+                { name: 'Vanilla' },
+            ],
+            selected: [],
 
-        settings: {
-            multiSelect : false
-        }
-    },
-    scoops: {
-        options: [
-            {name: '1', cost: 1.50},
-            {name: '2', cost: 2.00},
-            {name: '3', cost: 2.50}
-        ],
-        selected: [],
+            settings: {
+                multiSelect: false,
+            },
+        },
+        scoops: {
+            options: [
+                { name: '1', cost: 1.5 },
+                { name: '2', cost: 2.0 },
+                { name: '3', cost: 2.5 },
+            ],
+            selected: [],
 
-        settings: {
-            multiSelect : false
-        }
+            settings: {
+                multiSelect: false,
+            },
+        },
+        toppings: {
+            options: [
+                { name: 'Sprinkles', cost: 0.1 },
+                { name: 'Chocolate Syrup', cost: 0.1 },
+                { name: 'Gummy Bears', cost: 0.3 },
+                { name: 'Marshmellows', cost: 0.2 },
+            ],
+            selected: [],
+            settings: {
+                multiSelect: true,
+            },
+        },
     },
-    toppings: {
-        options: [
-            {name: 'Sprinkles', cost: 0.10},
-            {name: 'Chocolate Syrup', cost: 0.10},
-            {name: 'Gummy Bears', cost: 0.3},
-            {name: 'Marshmellows', cost: 0.2}
-        ],
-        selected: [{name: 'Marshmellows', cost: 0.2}],
-        settings: {
-            multiSelect : true
-        }
-    },
-},
-  mutations: {
-      TOGGLE(state, payload) {
-          if(state[payload.category].settings.multiSelect) {
-            if (state[payload.category].selected.some(payload => payload.option === payload.option)){
-                state[payload.category].selected.pop(payload.option)
-                console.log("doesn't exist")
-                console.log(payload.option)
+    mutations: {
+        TOGGLE(state, payload) {
+            var category = state[payload.category]
+            var selected = category.selected
+            if (category.settings.multiSelect) {
+                var result = selected.filter(obj => {
+                    return obj.name === payload.option.name
+                })
+                if (result.length != 0) {
+                    category.selected = selected.filter(
+                        obj => obj.name !== payload.option.name,
+                    )
+                } else {
+                    selected.push(payload.option)
+                }
             } else {
-                state[payload.category].selected.push(payload.option)
-                console.log('push multiselect')
-                console.log(state[payload.category].selected)
-                console.log(payload.option)
+                selected = []
+                selected.push(payload.option)
             }
-          } else {
-            state[payload.category].selected = payload.option
-            console.log('replace single select')
-           } 
-         }
-         
-  },
-  actions: {},
-  modules: {}
-});
+        },
+    },
+    actions: {},
+    modules: {},
+})
