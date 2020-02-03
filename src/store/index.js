@@ -70,8 +70,9 @@ export default new Vuex.Store({
                     selected.push(payload.option)
                 }
             } else {
-                selected = []
-                selected.push(payload.option)
+                console.log('single select')
+                category.selected = []
+                category.selected.push(payload.option)
             }
         },
     },
